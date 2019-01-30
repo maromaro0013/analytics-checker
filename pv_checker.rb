@@ -31,4 +31,14 @@ v2_result = JSON.parse(ret.body)
 
 v1_pvs = v1_result["value"].map { |val| [val["date"], val["pv"]] }.to_h
 v2_pvs = v2_result["value"].map { |val| [val["date"], val["pv"]] }.to_h
-v1_pvs.each { |key, val| p "difference: #{key}" if val != v2_pvs[key] }
+
+v1_pvs.each { |key, val|
+  p "daily pv difference: #{key}" if val != v2_pvs[key]
+}
+
+v1_previews = v1_result["value"].map { |val| [val["date"], val["pv_preview"]] }.to_h
+v2_previews = v2_result["value"].map { |val| [val["date"], val["pv_preview"]] }.to_h
+
+v1_previews.each { |key, val|
+  p "daily preview difference: #{key}" if val != v2_previews[key]
+}
